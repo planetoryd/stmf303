@@ -19,7 +19,7 @@
             "svdPath": "/home/phy/.platformio/platforms/ststm32/misc/svd/STM32F30x.svd",
             "preLaunchTask": {
                 "type": "PlatformIO",
-                "task": "Pre-Debug"
+                "task": "Pre-Debug (debug)"
             }
         },
         {
