@@ -1,13 +1,13 @@
 #![no_std]
 #![no_main]
 
+use panic_rtt_target as _;
 use cortex_m::asm;
 use cortex_m_rt::entry;
 use hal::{
     adc::{self, VoltageInternalReference},
     dac::Dac,
 };
-use panic_halt as _;
 use rtt_target::{
     debug_rprintln, debug_rtt_init_default, debug_rtt_init_print, rprintln, rtt_init,
     rtt_init_print, set_print_channel,
