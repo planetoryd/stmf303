@@ -7,10 +7,24 @@ build-std-features = ["panic_immediate_abort"]
 
 [target.thumbv7em-none-eabihf]
 rustflags = [
+  # "-C",
+  # "link-arg=-mfloat-abi=softfp",
+  # "-C",
+  # "link-arg=-mcpu=cortex-m4",
   "-C",
   "link-arg=-Tlink.x",
   "-C",
-  "link-arg=-mfloat-abi=softfp",
+  "link-arg=-Tdefmt.x",
+  # This is needed if your flash or ram addresses are not aligned to 0x10000 in memory.x
+  # See https://github.com/rust-embedded/cortex-m-quickstart/pull/95
   "-C",
-  "link-arg=-mcpu=cortex-m4",
+  "link-arg=--nmagic",
 ]
+
+[alias]
+rb = "run --bin"
+rrb = "run --release --bin"
+
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+linker = "flip-link"
+runner = "probe-rs run --chip STM32F303RCTx"
